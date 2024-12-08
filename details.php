@@ -27,19 +27,23 @@ $row = mysqli_fetch_assoc($results);
         <img id="logo" src="images/logo.svg" alt="logo" />
       </div>
       <nav>
-        <button class="hamburger" id="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
-        <div class="nav-menu" id="nav-menu">
-          <ul class="nav-list">
-            <li><a href="index.php">HOME</a></li>
-            <li><a href="about.html">ABOUT</a></li>
-            <li><a href="index.php#contact">CONTACT</a></li>
-          </ul>
-        </div>
+        <ul class="nav-list">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.php#contact">Contact</a></li>
+        </ul>
       </nav>
+
+      <button id="hamburger">&#9776;</button>
+      <div id="menu" class="overlay">
+        <button id="close">&times;</button>
+        <nav>
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.php#contact">Contact</a></li>
+          </ul>
+        </nav>
     </header>
     <main>
       <section class="black-bg3 full-width-grid-con col-span-full">
