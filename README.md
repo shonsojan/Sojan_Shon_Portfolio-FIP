@@ -2,11 +2,11 @@
 
 ## 📑 Table of Contents
 
-- [📖 Overview](#overview)
-- [⚙️ Features](#features)
-- [💻 Technologies Used](#technologies-used)
-- [📚 Usage](#usage)
-- [📝 License](#license)
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Usage](#usage)
+- [License](#license)
 
 ## 📖 Overview
 
