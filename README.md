@@ -3,7 +3,7 @@
 ## 📑 Table of Contents
 
 - [Overview](#-overview)
-- [Features](#-features)
+- [Features](#️-features)
 - [Technologies Used](#-technologies-used)
 - [Usage](#-usage)
 - [License](#-license)
