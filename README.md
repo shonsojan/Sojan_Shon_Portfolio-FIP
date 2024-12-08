@@ -12,7 +12,7 @@
 
 ![Portfolio Image](images/profile.jpg)
 
-This is my personal portfolio website showcasing my skills, projects, and background as a designer and developer. Originally from Kerala, India, I am currently based in Canada and am pursuing my expertise in Interactive Media Design.
+This is my personal portfolio website showcasing my skills, projects, and background as a designer and developer. Originally from Kerala, India.🌴 I am currently based in Canada 🇨🇦 and am pursuing my expertise in Interactive Media Design.🖼️
 
 ## ⚙️ Features
 
