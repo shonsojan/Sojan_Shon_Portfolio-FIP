@@ -1,5 +1,7 @@
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-timeline: --page-scroll block;
 }
 
 main {

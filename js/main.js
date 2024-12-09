@@ -7,6 +7,7 @@
   const hamburger = document.querySelector("#hamburger");
   const closeButton = document.querySelector("#close");
   const menuLinks = document.querySelectorAll("#menu ul a");
+  const profileImage = document.querySelector("#profile img");
 
   function toggleMenu() {
     menu.classList.toggle("open");
@@ -19,4 +20,8 @@
   menuLinks.forEach((link) => {
     link.addEventListener("click", toggleMenu);
   });
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollToPlugin);
+  gsap.to("#profile", { duration: 1, x: -300 });
 })();

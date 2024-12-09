@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <title>Shon Sojan</title>
 
+    <script defer src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
+    <script defer src="js/main.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
 
     <?php
 //connect to the running database server and the specific database
@@ -27,7 +34,8 @@ $results = mysqli_query($connect,$query);
 
   </head>
   <body>
-    <header class="sticky">
+    
+    <header>
       <h1 class="hidden">Portfolio</h1>
       <h2 class="hidden">Shon Sojan</h2>
       <div class="logo">
@@ -55,6 +63,7 @@ $results = mysqli_query($connect,$query);
     </header>
 
     <main>
+    <div id="shonprogress"></div>
       <!-- PROFILE -->
 
       <section class="full-width-grid-con col-span-full black-bg">
@@ -99,11 +108,12 @@ $results = mysqli_query($connect,$query);
         </section>
       </div>
 
+
       <!-- WORKS -->
 
       <section class="full-width-grid-con col-span-full yellow-bg">
         <h2 class="col-span-full">SELECETED<br />PROJECTS</h2>
-        <div class="col-span-full grid-con">
+        <div class=".project col-span-full grid-con">
 
         
         <?php
@@ -114,7 +124,7 @@ $results = mysqli_query($connect,$query);
 
 $cell = 0;
 
-for($i = 0; $i < 6; $i++) {
+for($i = 0; $i < 1; $i++) {
     if($cell == 3) {
         $cell=1;
     }else{
@@ -191,7 +201,6 @@ echo'</a>';
         </a>
       </div>
     </footer>
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script src="js/main.js"></script>
+
   </body>
 </html>
