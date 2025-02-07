@@ -40,15 +40,13 @@ $row = mysqli_fetch_assoc($results);
       <div id="menu" class="overlay">
         <button id="close">&times;</button>
         <nav>
-<<<<<<< HEAD
-=======
           <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="index.php#contact">Contact</a></li>
           </ul>
         </nav>
->>>>>>> bb1134b7329f502760e323ed272551cb72bad4d3
+
     </header>
     <main>
       <section class="black-bg3 full-width-grid-con col-span-full">
