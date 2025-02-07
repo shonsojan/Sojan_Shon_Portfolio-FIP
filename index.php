@@ -9,25 +9,22 @@
     <title>Shon Sojan</title>
 
     <script defer src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script defer src="js/main.js"></script>
+    
 
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+<script defer src="js/main.js"></script>
 
     <?php
-//connect to the running database server and the specific database
+
 require_once('includes/connect.php');
 
 
 
-//create a query to run in SQL
-$query = 'SELECT projects.id AS project, image, image1, image2, image3, image4 FROM projects, media WHERE projects.id = project_id;';
-
-
-//run the query to get back the content
-$results = mysqli_query($connect,$query);
+$stmt = $connection->prepare('SELECT projects.id AS project, image, image1, image2, image3, image4 FROM projects, media WHERE projects.id = project_id;');
+$stmt->execute();
 
 ?>
 
@@ -118,7 +115,8 @@ $results = mysqli_query($connect,$query);
         
         <?php
 
-        while($row = mysqli_fetch_array($results)) {
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         
 
@@ -148,6 +146,7 @@ echo'</a>';
 }
 
         }
+        $stmt = null;
 
 
 ?>

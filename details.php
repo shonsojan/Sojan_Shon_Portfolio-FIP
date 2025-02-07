@@ -1,27 +1,25 @@
 <!DOCTYPE html>
+<?php
+require_once('includes/connect.php');
+$query = 'SELECT * FROM projects, media WHERE project_id = projects.id AND projects.id = :projectid';
+$stmt = $connection->prepare($query);
+$projectid = $_GET['id'];
+$stmt->bindParam(':projectid', $projectid, PDO::PARAM_INT);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = null;
+?>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+<meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/grid.css" rel="stylesheet" type="text/css" />
     <title>Project</title>
+    <script defer src="js/main.js"></script>
 
-    <?php
-require_once('includes/connect.php');
-
-$query = 'SELECT * FROM projects, media WHERE project_id = projects.id AND media.id ='.$_GET['id'];
-
-$results = mysqli_query($connect,$query);
-
-$row = mysqli_fetch_assoc($results);
-
-?>
-
-<script defer src="js/main.js"></script>
-
-  </head>
-  <body>
+</head>
+<body>
     <header class="sticky">
       <h1 class="hidden">Portfolio</h1>
       <h2 class="hidden">Shon Sojan</h2>
@@ -46,7 +44,6 @@ $row = mysqli_fetch_assoc($results);
             <li><a href="index.php#contact">Contact</a></li>
           </ul>
         </nav>
-
     </header>
     <main>
       <section class="black-bg3 full-width-grid-con col-span-full">

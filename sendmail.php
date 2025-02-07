@@ -1,78 +1,77 @@
 <?php
+require_once('includes/connect.php');
 
-require_once('connect.php');
-
-///gather the form content
+// Gather the form content
 $fname = $_POST['first_name'];
 $lname = $_POST['last_name'];
 $email = $_POST['email'];
-$msg = $_POST['comments'];
+$msg = $_POST['message'];
 
 $errors = [];
-
-//validate and clean these values
 
 $fname = trim($fname);
 $lname = trim($lname);
 $email = trim($email);
 $msg = trim($msg);
 
-if(empty($lname)) {
-    $errors['last_name'] = 'Last Name cant be empty';
+// Validate inputs
+if (empty($lname)) {
+    $errors['last_name'] = 'Last Name can\'t be empty';
 }
 
-if(empty($fname)) {
-    $errors['first_name'] = 'First Name cant be empty';
+if (empty($fname)) {
+    $errors['first_name'] = 'First Name can\'t be empty';
 }
 
-if(empty($msg)) {
-    $errors['comments'] = 'Comment field cant be empty';
+if (empty($msg)) {
+    $errors['comments'] = 'Comment field can\'t be empty';
 }
 
-if(empty($email)) {
+if (empty($email)) {
     $errors['email'] = 'You must provide an email';
-} else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $errors['legit_email'] = 'You must provide a REAL email';
 }
 
-// if no errors were created above
+// If no errors, proceed with database insertion
+if (empty($errors)) {
+    try {
+        // Prepare the SQL query using placeholders
+        $query = "INSERT INTO enquiries (last_name, first_name, email, message) 
+                  VALUES (:lname, :fname, :email, :msg)";
+        $stmt = $connection->prepare($query);
 
-if(empty($errors)) {
+        // Bind parameters
+        $stmt->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $stmt->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':msg', $msg, PDO::PARAM_STR);
 
-    //insert these values as a new row in the contacts table
+        // Execute the query
+        if ($stmt->execute()) {
+            // Format and send the email
+            $to = 's_sojan212157@fanshaweonline.ca';
+            $subject = 'Message from your Portfolio site!';
+            $message = "You have received a new contact form submission:\n\n";
+            $message .= "Name: $fname $lname\n";
+            $message .= "Email: $email\n\n";
+            $message .= $msg;
 
-    $query = "INSERT INTO contacts (last_name,first_name, email, comments) VALUES('.$lname.','.$fname.','.$email.','.$msg.')";
+            mail($to, $subject, $message);
 
-    if(mysqli_query($connect, $query)) {
-
-//format and send these values in an email
-
-$to = 's_sojan212157@fanshaweonline.ca';
-$subject = 'Message from your Portfolio site!';
-$message = "You have received a new contact form submission:\n\n";
-$message .= "Name: ".$fname." ".$lname."\n";
-$message .= "Email: ".$email."\n\n";
-$message .= $msg;
-//build out rest of message body...
-
-mail($to,$subject,$message);
-
-header('Location: thank_you.php');
-
-}else{
-    for($i=0; $i < count($errors); $i++) {
-        echo $errors[$i].'<br>';
+            // Redirect to a thank you page
+            header('Location: thank_you.html');
+            exit();
+        } else {
+            echo "Error: Could not save the message.";
+        }
+    } catch (PDOException $e) {
+        die("Database error: " . $e->getMessage());
+    }
+} else {
+    
+    foreach ($errors as $error) {
+        echo $error . '<br>';
     }
 }
-
-
-
-
-
-
-
-
-}
-
-
 ?>
